@@ -53,12 +53,3 @@ Each `test.mat` file contains a `test` struct with:
 | `test.data(:,9)` | aerodynamic torque |
 | `test.rho` | air density for that run |
 
-### Usage
-
-Run the script directly in MATLAB (adjust the loop range if you add/remove configurations):
-
-```matlab
->> efficiency_vs_solidity
-```
-
-This produces a figure with efficiency and max torque plotted against σ, using the fixed `sigma` and manually-logged `max_torque` vectors at the top of the script.
