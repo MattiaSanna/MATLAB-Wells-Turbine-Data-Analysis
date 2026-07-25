@@ -1,26 +1,31 @@
 # wells-turbine-MATLAB
 
-MATLAB scripts used to process experimental data from the OWC (Oscillating Water Column) turbine simulator at DIMCM, University of Cagliari, for a thesis studying how blade **solidity** affects Wells turbine performance.
+MATLAB scripts used to process experimental data from the OWC (Oscillating Water Column) turbine simulator.
 
-**Please note: for clear reazons I will not share the experimental data but only the scripts I personally coded.**
-
+**Please note: for clear reasons I will not share the experimental data, only the scripts I personally coded.**
 
 ### Background
 
-Key findings the scripts were built to produce:
+The thesis characterized the global performance of a Wells turbine under bidirectional airflow and involved building a MATLAB pipeline for signal processing, inertial mass calculations, and performance/loss analysis. Key findings:
 
 - Maximum torque scales roughly proportionally with solidity.
 - Efficiency stays fairly stable for the 4–6 blade configurations, then drops off at higher solidity — a clear trade-off between peak torque and peak efficiency.
 - σ ≈ 0.625 comes out as the best overall compromise.
+- Aerodynamic and kinetic losses show a quadratic correlation with solidity, offering practical guidance for Wells rotor design.
 - A constant-solidity blade design was also compared against a conventional constant-chord design, reaching 70–75% efficiency vs. 50–55%, mainly from lower aerodynamic losses.
+- A zero-crossing algorithm was implemented to determine the optimal number of periods to acquire per test, cutting processing time by 35–40%.
 
 ### What the scripts do
+
+This repo currently covers the performance/efficiency analysis stage of the pipeline:
 
 1. Load raw run data for each configuration from `Measurements/Z<n>/test.mat`.
 2. Compute the flow rate from piston velocity and the non-dimensional flow coefficient φ from air velocity and rotor speed.
 3. Zero out torque and ΔP samples outside the valid φ range (below-threshold values are noise, not real turbine operation).
 4. Integrate instantaneous aerodynamic power and pneumatic power over time (`trapz`) to get the average efficiency for that run.
 5. Plot efficiency and (manually recorded) max torque against solidity σ on a dual-axis chart.
+
+Other stages of the pipeline — signal processing, the zero-crossing period-selection algorithm, inertial mass calculations, and the aerodynamic/kinetic loss analysis — aren't included in this snippet yet.
 
 ### Requirements
 
@@ -52,4 +57,3 @@ Each `test.mat` file contains a `test` struct with:
 | `test.data(:,7)` | rotor speed [RPM] |
 | `test.data(:,9)` | aerodynamic torque |
 | `test.rho` | air density for that run |
-
