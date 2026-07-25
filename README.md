@@ -1,10 +1,11 @@
-# wells-turbine-solidity-analysis
+# wells-turbine-MATLAB
 
 MATLAB scripts used to process experimental data from the OWC (Oscillating Water Column) turbine simulator at DIMCM, University of Cagliari, for a thesis studying how blade **solidity** affects Wells turbine performance.
 
-### Background
+**Please note: for clear reazons I will not share the experimental data but only the scripts I personally coded.**
 
-The Wells turbine is a non-conventional, self-rectifying air turbine used in wave energy converters. This work compares five rotor configurations (4 to 8 blades, solidity σ from 0.417 to 0.833) to see how solidity affects efficiency and torque.
+
+### Background
 
 Key findings the scripts were built to produce:
 
