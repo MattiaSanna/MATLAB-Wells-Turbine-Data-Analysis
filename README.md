@@ -62,7 +62,3 @@ Run the script directly in MATLAB (adjust the loop range if you add/remove confi
 ```
 
 This produces a figure with efficiency and max torque plotted against σ, using the fixed `sigma` and manually-logged `max_torque` vectors at the top of the script.
-
-### Note
-
-This README is based on the one example script and the thesis context. If there are more scripts in the project (e.g. for the local/pointwise measurements, or the constant-chord vs. constant-solidity comparison), let me know and I'll fold them into this structure.
