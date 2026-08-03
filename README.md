@@ -19,15 +19,22 @@ The thesis characterized the global performance of a Wells turbine under bidirec
 
 ### What the scripts do
 
-This repo currently covers the performance/efficiency analysis stage of the pipeline:
+This repo covers the performance/efficiency/loss-analysis stage of the pipeline, plus the zero-crossing period-selection demo. Each script loads one or more `test.mat` files from `Measurements/Z<n>/` and shares its plot styling (colors, fonts) via `info.m`.
 
-1. Load raw run data for each configuration from `Measurements/Z<n>/test.mat`.
-2. Compute the flow rate from piston velocity and the non-dimensional flow coefficient φ from air velocity and rotor speed.
-3. Zero out torque and ΔP samples outside the valid φ range (below-threshold values are noise, not real turbine operation).
-4. Integrate instantaneous aerodynamic power and pneumatic power over time (`trapz`) to get the average efficiency for that run.
-5. Plot efficiency and (manually recorded) max torque against solidity σ on a dual-axis chart.
+1. **`performance_and_losses_comparison.m`** — loops over all five blade counts (Z4–Z8). For each: computes the flow coefficient φ, torque coefficient T\*, pressure coefficient p\*, and instantaneous efficiency η; derives the mean blade-span velocity, relative/absolute velocity triangle components, and the velocity-reduction coefficients λ and ψ; from these, computes rotor (aerodynamic) losses ξ_R, exit losses ξ_exit, and total-to-static efficiency η_ts. Plots all six quantities against φ, overlaying all 5 blade counts on the same axes (6 figures total).
 
-Other stages of the pipeline — signal processing, the zero-crossing period-selection algorithm, inertial mass calculations, and the aerodynamic/kinetic loss analysis — aren't included in this snippet yet.
+2. **`cycle_averaging_convergence.m`** — loads a single raw (non pre-averaged) run (`Measurements/Z6/test_T7s_F70Hz_no-medie.mat`) and demonstrates the zero-crossing period-selection algorithm: detects cycle boundaries by finding where the piston position crosses a fixed threshold, resamples each detected cycle onto a uniform 1000-point grid, then averages the first *P* cycles for P = 1, 5, 7, 10, 15. Plots rotational speed, torque, ΔP, ambient-side pressure, and piston position vs. normalized cycle time for each P, to show how quickly the averaged waveform converges with more cycles.
+
+3. **`beta2_vs_solidity.m`** — loops over Z4–Z8, computes the flow coefficient φ and the rotor exit relative-flow angle β₂ from the velocity triangle, then interpolates β₂ at a fixed design flow coefficient (φ = 0.15) for each turbine. Plots β₂ at that design point against solidity σ.
+
+4. **`efficiency_vs_solidity.m`** — loops over Z4–Z8, computes φ and zeroes out torque/ΔP samples outside a valid φ range (below-threshold values are noise, not real turbine operation), then integrates instantaneous aerodynamic power and pneumatic power over time (`trapz`) to get the average efficiency for that run. Plots efficiency and (manually recorded) max torque against solidity σ on a dual-axis chart.
+
+5. **`coefficients_normalized_by_solidity.m`** — loops over Z4–Z8, computes φ, T\*, and p\*, then divides T\* and p\* by σ² for each turbine. Plots the normalized torque and pressure coefficients against φ for all 5 blade counts overlaid, to check how well solidity-normalization collapses the curves.
+
+6. **`single_turbine_performance.m`** — interactive version of script 1: prompts the user (`input`) to pick a single turbine (4, 5, 6, 7, or 8 blades), loads just that run, and computes/plots the same six quantities (T\*, p\*, η, ξ_R, ξ_exit, η_ts) vs. φ for that turbine alone.
+
+Other stages of the pipeline — full signal processing, inertial mass calculations — aren't included in this snippet yet.
+
 
 ### Requirements
 
