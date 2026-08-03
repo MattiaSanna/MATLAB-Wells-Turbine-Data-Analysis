@@ -2,7 +2,7 @@
 
 MATLAB scripts used to process experimental data from the OWC (Oscillating Water Column) turbine simulator.
 
-**Please note: for clear reasons I will not share the experimental data, only the scripts I personally coded.**
+**Note:** The experimental data used in the thesis cannot be shared publicly. The dataset included in this repository is a sampled and randomized version provided only for demonstration and code reproducibility purposes.
 
 ### Background
 
