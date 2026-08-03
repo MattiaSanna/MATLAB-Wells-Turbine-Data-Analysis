@@ -16,7 +16,7 @@ switch turbine
     case 7
         load('Measurements/Z7/test.mat');
     case 8
-        load('Measurements/Z8/test_T8s_F60Hz.mat');
+        load('Measurements/Z8/test.mat');
     otherwise
         disp('Number is not 4, 5, 6, 7 or 8. No file loaded.');
         data = [];
