@@ -33,7 +33,7 @@ This repo covers the performance/efficiency/loss-analysis stage of the pipeline,
 
 6. **`single_turbine_performance.m`** — interactive version of script 1: prompts the user (`input`) to pick a single turbine (4, 5, 6, 7, or 8 blades), loads just that run, and computes/plots the same six quantities (T\*, p\*, η, ξ_R, ξ_exit, η_ts) vs. φ for that turbine alone.
 
-Other stages of the pipeline — full signal processing, inertial mass calculations — aren't included in this snippet yet.
+
 
 
 ### Requirements
