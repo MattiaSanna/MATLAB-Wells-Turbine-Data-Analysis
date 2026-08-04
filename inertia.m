@@ -1,11 +1,11 @@
 info
 
 %load the file related to inertia 
-matrix = readmatrix("Measurements/Inerzia-ventilazione/inertia_z6.out", 'FileType', 'text');
-time = matrix(:,1);
-freq = matrix(:,2);
-mes_freq = matrix(:,3);
-torque = matrix(:,4);
+data = readmatrix("Measurements/Inerzia-ventilazione/inertia_z6.out", 'FileType', 'text');
+time = data(:,1);
+freq = data(:,2);
+mes_freq = data(:,3);
+torque = data(:,4);
 
 %plot necessary to define the integration extremes  
 figure (1)
