@@ -25,7 +25,7 @@ This repo covers the performance/efficiency/loss-analysis stage of the pipeline,
 
 2. **`zero_crossing.m`** — loads a single raw (non pre-averaged) run (`Measurements/Z6/test_T7s_F70Hz_no-medie.mat`) and demonstrates the zero-crossing period-selection algorithm: detects cycle boundaries by finding where the piston position crosses a fixed threshold, resamples each detected cycle onto a uniform 1000-point grid, then averages the first *P* cycles for P = 1, 5, 7, 10, 15. Plots rotational speed, torque, ΔP, ambient-side pressure, and piston position vs. normalized cycle time for each P, to show how quickly the averaged waveform converges with more cycles.
 
-3. **`beta2_vs_solidity.m`** — loops over Z4–Z8, computes the flow coefficient φ and the rotor exit relative-flow angle β₂ from the velocity triangle, then interpolates β₂ at a fixed design flow coefficient (φ = 0.15) for each turbine. Plots β₂ at that design point against solidity σ.
+3. **`angles.m`** — loops over Z4–Z8, computes the flow coefficient φ and the rotor exit relative-flow angle β₂ from the velocity triangle, then interpolates β₂ at a fixed design flow coefficient (φ = 0.15) for each turbine. Plots β₂ at that design point against solidity σ.
 
 4. **`efficiency_vs_solidity.m`** — loops over Z4–Z8, computes φ and zeroes out torque/ΔP samples outside a valid φ range (below-threshold values are noise, not real turbine operation), then integrates instantaneous aerodynamic power and pneumatic power over time (`trapz`) to get the average efficiency for that run. Plots efficiency and (manually recorded) max torque against solidity σ on a dual-axis chart.
 
